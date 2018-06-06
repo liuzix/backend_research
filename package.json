@@ -1,0 +1,22 @@
+{
+  "name": "backend_research",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "babel-node src/index.js --presets es2015,stage-2",
+    "build": "babel src -d dist --preset es2015,stage-2",
+    "serve": "node dist/index.js"
+  },
+  "author": "Zixiong Liu",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1"
+  }
+}
