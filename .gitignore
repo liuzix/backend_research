@@ -69,3 +69,4 @@ typings/
 
 
 /dist
+/src/config.js
