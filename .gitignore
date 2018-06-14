@@ -68,5 +68,4 @@ typings/
 .serverless
 
 
-/dist
 /src/config.js

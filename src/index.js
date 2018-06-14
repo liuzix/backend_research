@@ -11,6 +11,7 @@ const redisClient = redis.createClient(config.redis.url);
 
 const signup_router = require("./signup.js");
 const login_router = require("./login.js");
+const posts_router = require("./posts.js");
 
 
 const app = express();
@@ -19,10 +20,9 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 app.get("/api", (req, res) => res.json({}));
-
 app.use("/api/signup", signup_router);
-
 app.use("/api/login", login_router);
+app.use("/api/posts", posts_router);
 
 redisClient.on("error", err => {
     console.log("Redis Error: " + err);

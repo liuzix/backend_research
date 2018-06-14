@@ -26,11 +26,9 @@ router.post("/", async (req, res) => {
     }
 });
 
-router.get("/check", async (req, res) => {
+router.get("/check", auth.processAuth, (req, res) => {
     try {
-        const key = req.cookies["session"];
-        console.log("current session key: " + key);
-        const username = await auth.getUsername(req.app.locals.cache, key);
+        const username = req.username;
         if (username) {
             res.json({username: username});
         } else {

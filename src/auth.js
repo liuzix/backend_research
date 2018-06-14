@@ -11,6 +11,10 @@ module.exports.generateSession = (redis) => {
 
 module.exports.getUsername = (redis, key) => {
     return new Promise((resolve, reject) => {
+        if (!key) {
+            resolve(null);
+            return;
+        }
         redis.get(key, (err, reply) => {
             if (!err) {
                 resolve(reply);
@@ -19,6 +23,18 @@ module.exports.getUsername = (redis, key) => {
             }
         });
     });
+};
+
+module.exports.processAuth = async (req, _, next) => {
+    const key = req.cookies["session"];
+    const username = await module.exports.getUsername(req.app.locals.cache, key);
+    if (username) {
+        console.log("Current username:" + username);
+    } else {
+        console.log("Currently not logged in");
+    }
+    req.username = username;
+    next();
 };
 
 
